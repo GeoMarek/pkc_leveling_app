@@ -25,7 +25,6 @@ a:hover {
 
 div {
   height: 78vh;
-  width: 100%;
   background-color: #002a38;
   line-height: 1.3;
   font-family: Menlo, monospace;
@@ -53,12 +52,14 @@ div {
 }
 
 input,
-button {
+button,
+p {
   margin: 15px;
   color: aquamarine;
 }
 
-label {
+label,
+h3 {
   margin: 15px;
   color: aliceblue;
   display: inline-block;
@@ -70,4 +71,24 @@ button {
 }
 .way_select {
   margin: 10px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+table,
+th,
+td {
+  border: 1px solid azure;
+  margin: 15px;
+  color: azure;
 }

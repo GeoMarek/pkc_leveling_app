@@ -3,7 +3,7 @@
   <head>
     <title>Leveling App</title>
 
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
     <div class="header">
@@ -14,10 +14,91 @@
       </ul>
     </div>
 
-    <div>
-      <ul>
-        <li>Content page</li>
-      </ul>
+    <div class="center-div">
+      <div class="column">
+        <h3>Potrzebne pliki</h3>
+        <p>
+          Potrzebne są dwa pliki - z punktami oraz przewyższeniami. Oba muszą
+          być w formacie JSON.
+        </p>
+        <p>
+          W pliku z punktami przypisujemy nazwie punktu jego wysokość. Dla
+          punktów mierzonych jako wysokość powinno być wpisane null. Dla reperów
+          powinna to być ich wysokość. Przykład poniżej:
+        </p>
+        <p style="color: bisque">
+          { <br />
+          &nbsp;&nbsp;"R0": 100.127, <br />
+          &nbsp;&nbsp;"P1": null, <br />
+          &nbsp;&nbsp;"P2": null, <br />
+          &nbsp;&nbsp;"P3": null, <br />
+          &nbsp;&nbsp;"R4": 115.43 <br />
+          }
+        </p>
+        <p>
+          W pliku z przewyższeniami przypisujemy nazwie przewyższenia jego
+          wartość. Każde z przewyższeń musi mieć przypisaną wartość liczbową.
+          Przykład poniżej:
+        </p>
+        <p style="color: bisque">
+          { <br />
+          &nbsp;&nbsp;"H1": 2.371, <br />
+          &nbsp;&nbsp;"H2": 4.768, <br />
+          &nbsp;&nbsp;"H3": -8.142, <br />
+          &nbsp;&nbsp;"H4": 2.961, <br />
+          &nbsp;&nbsp;"H5": -1.774 <br />
+          }
+        </p>
+        <p>
+          Po wczytawniu plików zostaniesz poproszony o zdefiniowanie połączeń w
+          sieci niwelacyjnej. Dla każdego przewyższenia trzeba określić punkt
+          początkowy oraz punkt końcowy. Na podstawie tych danych zostanie
+          utworzony graf skierowany, z którego powstanie układ równań liniowych.
+          Przykład wraz z rysunkiem jest przedstawiony po prawej.
+        </p>
+      </div>
+      <div class="column">
+        <h3>Definiowanie sieci niwelacyjnej</h3>
+        <img src="data/graph.PNG" alt="Przykładowa sieć niwelacyjna" />
+        <p>
+          Powyższy rysunek przedstawia przykładową sieć niwelacyjną. Na czerwono
+          zaznaczono punkty stałe, a na zielono punkty mierzone. Aby poprawnie
+          zdefiniować połączenia w takiej sieci, definicja odcinków powinna
+          wyglądać następująco:
+        </p>
+        <table>
+          <tr>
+            <th>&nbsp;Odcinek&nbsp;</th>
+            <th>&nbsp;Początek&nbsp;</th>
+            <th>&nbsp;Koniec&nbsp;</th>
+          </tr>
+          <tr>
+            <th>H1</th>
+            <th>R0</th>
+            <th>P1</th>
+          </tr>
+          <tr>
+            <th>H2</th>
+            <th>P1</th>
+            <th>P3</th>
+          </tr>
+          <tr>
+            <th>H3</th>
+            <th>R4</th>
+            <th>P3</th>
+          </tr>
+          <tr>
+            <th>H4</th>
+            <th>P2</th>
+            <th>P3</th>
+          </tr>
+          <tr>
+            <th>H5</th>
+            <th>P2</th>
+            <th>P1</th>
+          </tr>
+        </table>
+      </div>
     </div>
 
     <div class="footer">
