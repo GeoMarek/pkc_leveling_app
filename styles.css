@@ -43,7 +43,8 @@ div {
   text-decoration: none;
 }
 
-input {
+input,
+button {
   margin: 15px;
   color: aquamarine;
 }
@@ -54,6 +55,7 @@ label {
   display: inline-block;
 }
 
-.submit {
+.submit,
+button {
   color: black;
 }

@@ -4,6 +4,7 @@
     <title>Leveling App</title>
 
     <link rel="stylesheet" href="styles.css" />
+    <script src="script.js"></script>
   </head>
   <body>
     <div class="header">
@@ -15,20 +16,29 @@
     </div>
 
     <div>
-      <form>
-        <label for="points"> Wybierz plik z punktami</label>
-        <br />
-        <input type="file" id="points" />
-        <br />
-        <label for="heights"> Wybierz plik z przewyższeniami</label>
-        <br />
-        <input type="file" id="heights" />
-        <br />
-        <label for="graph">Przejdź do utworzenia sieci</label>
-        <br />
-        <input type="submit" id="graph" class="submit" />
-        <br />
-      </form>
+      <ul>
+        <li>
+          <label>
+            Wybierz plik z punktami:
+            <br />
+            <input id="input-nodes" type="file" />
+          </label>
+        </li>
+        <li>
+          <label>
+            Wybierz plik z przewyższeniami:
+            <br />
+            <input id="input-ways" type="file" />
+          </label>
+        </li>
+        <li>
+          <label>
+            Rozpocznij generowanie sieci:
+            <br />
+            <button onclick="defineNetwork()">Definiowanie sieci</button>
+          </label>
+        </li>
+      </ul>
     </div>
 
     <div class="footer">
