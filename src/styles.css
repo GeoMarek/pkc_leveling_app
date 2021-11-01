@@ -24,7 +24,6 @@ a:hover {
 }
 
 div {
-  height: 78vh;
   background-color: #002a38;
   line-height: 1.3;
   font-family: Menlo, monospace;
@@ -32,10 +31,9 @@ div {
 
 .center-div {
   display: flex;
-  height: 78vh;
-  width: 100%;
   background-color: #002a38;
   line-height: 1.3;
+  height: 100%;
   font-family: Menlo, monospace;
 }
 

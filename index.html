@@ -14,10 +14,131 @@
       </ul>
     </div>
 
-    <div>
-      <ul>
-        <li>Content page</li>
-      </ul>
+    <div class="center-div">
+      <div class="column">
+        <h3>1. Wstęp teoretyczny</h3>
+        <p>
+          W geodezji podczas realizowania sieci pomiarowych niebędne jest
+          również przeprowadzenie procesu wyrównania pomiarów. Pomaga on
+          poprawić błędy na podstawie probabilistyki oraz algebry macierzy.
+          Kluczowym aspektem jest wówczas upewnienie się, że badane wielkości są
+          mierzone więcej razy niż to tak naprawdę wymaga. Na tej stronie
+          zaprezentowano jedną z wielu metod rachunku wyrównawczego na sieci
+          niwelacyjnej - rozwiązanie nieoznaczone w metodzie parametrycznej.
+        </p>
+        <h3>2. Układ równań obserwacyjnych</h3>
+        <p>
+          Omawiana sieć niwelacyjna jest przedstawiona w zakładce
+          <a href="examples.html">przykład</a>. Znajdują się tam też informacje
+          o pomierzonych przewyższeniach i wysokościach reperów.
+        </p>
+        <p>
+          W przypadku sieci niwelacyjnej proces wyrównywania rozpoczynamy od
+          obliczenia obserwowanych wysokości punktów:
+        </p>
+        <p style="color: bisque">
+          &nbsp;&nbsp;P1 = R0 + h1 <br />
+          &nbsp;&nbsp;P2 = R4 + h2 <br />
+          &nbsp;&nbsp;P3 = R4 + h3 - h4 <br />
+        </p>
+        <p>Na ich podstawie można skonstruować układ równań obserwacyjnych:</p>
+        <p style="color: bisque">
+          &nbsp;&nbsp;h1 = P1 - R0 <br />
+          &nbsp;&nbsp;h2 = P2 - P1 <br />
+          &nbsp;&nbsp;h3 = P2 - R4 <br />
+          &nbsp;&nbsp;h4 = P2 - P3 <br />
+          &nbsp;&nbsp;h5 = P1 - P3 <br />
+        </p>
+        <p>
+          W kolejnym kroku na podstawie tego układu równań zostaną skonstruowane
+          macierze niezbędne do wykonywania obliczeń.
+        </p>
+      </div>
+      <div class="column">
+        <h3>3. Wyznaczenie macierzy obliczeniowych</h3>
+        <p>
+          Po utworzeniu układu równań obserwacyjnych można go przekształcić na
+          układ równań poprawek do przewyższeń i z niego wyodrębnić macierze
+          obliczeniowe:
+        </p>
+        <p style="color: bisque">
+          &nbsp;&nbsp;v1 =
+          &nbsp;P1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -
+          R0 - h1<br />
+          &nbsp;&nbsp;v2 = -P1 + P2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - h2<br />
+          &nbsp;&nbsp;v3 =
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -
+          R4 - h3<br />
+          &nbsp;&nbsp;v4 = &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P2 - P3 - h4<br />
+          &nbsp;&nbsp;v5 = &nbsp;P1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - P3 - h5
+          <br />
+        </p>
+        <p>
+          Pierwsze 3 kolumny w tym układzie równań tworzą macierz współczynników
+          A. Pozostałe kolumny tworzą z kolei wektor wyrazów wolnych L. Macierze
+          te można przedstawić za pomocą równania, w którym wektor nieznanych
+          wysokości jest oznaczony jako X:
+        </p>
+        <p style="color: bisque">V = AX + L</p>
+        <p>
+          Oprócz tych podstawowych macierzy potrzebna jest również macierz wag
+          P. Jest ona obliczana na podstawie dokładności urządzenia. Jest to
+          macierz diagonalna, gdzie na przekątnej znajdują się odwrotności
+          kwadratów dokładności pomiaru.
+        </p>
+        <h3>4. Wyznaczenie wektora niewiadomych X</h3>
+        <p>W celu wyznaczenia wektora X korzysta się poniższej zależności:</p>
+        <p style="color: bisque">A<sup>T</sup>PAX + A<sup>T</sup>PL = 0</p>
+        <p>Co po przekształceniu daje:</p>
+        <p style="color: bisque">
+          X = - (A<sup>T</sup>PA)<sup>-1</sup> * A<sup>T</sup>PL
+        </p>
+      </div>
+      <div class="column">
+        <h3>5. Wektor poprawek i kontrola wyrównania</h3>
+        <p>
+          Znając wektor niewiadomych X można wyznaczyć wektor poprawek na
+          podstawie równania z punktu 3. Po tym należy również przeprowadzić
+          kontrolę wyrównania i sprawdzić, czy obie strony poniższego równanie
+          są do siebie zbliżone:
+        </p>
+        <p style="color: bisque">
+          V<sup>T</sup>PV = L<sup>T</sup>PAX + L<sup>T</sup>PL
+        </p>
+        <h3>6. Analiza dokładności</h3>
+        <p>
+          W analizie dokładności wyznacza się błędy średnie wyrównanych
+          wysokości oraz wyrównanych obserwacji. W obu przypadkach konstruujemy
+          macierz kowariancji wyrównanych wielkości. W przypadku wysokości wzór
+          na tą macierz wygląda tak:
+        </p>
+        <p style="color: bisque">
+          C<sub>X</sub> = m<sub>0</sub><sup>2</sup> (A<sup>T</sup>PA)<sup
+            >-1</sup
+          >
+        </p>
+
+        <p>Z kolei dla wyrównanych obserwacji wygląd on następująco:</p>
+        <p style="color: bisque">
+          C<sub>V</sub> = m<sub>0</sub
+          ><sup>2</sup> A(A<sup>T</sup>PA)<sup>-1</sup>A<sup>T</sup>
+        </p>
+        <p>
+          W obu równaniach pojawia się również estymator współczynnik wariancji
+          m<sub>0</sub>, który można obliczyć na podstawie ilości nadliczbowych
+          operacji N:
+        </p>
+        <p style="color: bisque">
+          m<sub>0</sub><sup>2</sup> = V<sup>T</sup>PV / N
+        </p>
+        <p>
+          Ostatecznie kwadraty średnich błędy wyrównania zarówno dla punktów i
+          obserwacji znajdują się na przekątnych wyznaczonych macierzy C<sub
+            >X</sub
+          >
+          oraz C<sub>V</sub>.
+        </p>
+      </div>
     </div>
 
     <div class="footer">
